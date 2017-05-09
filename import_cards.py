@@ -28,7 +28,8 @@ setsdb = conn.cursor()
 for keys in sets.keys():
     #    print keys
     #    print sets[keys]["name"]
-    setsdb.execute("INSERT INTO Sets (Set_Code,Set_Name) VALUES (%s,%s)", keys, sets[keys]["name"])
+    setsdb.execute("INSERT IGNORE INTO Sets (Set_Code,Set_Name) VALUES (%s,%s)", (keys, sets[keys]["name"]))
+
 
 conn.commit()
 setsdb.close()
