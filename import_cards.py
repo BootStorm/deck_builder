@@ -28,7 +28,8 @@ setsdb = conn.cursor()
 for keys in sets.keys():
     #    print keys
     #    print sets[keys]["name"]
-    setsdb.execute("INSERT IGNORE INTO Sets (Set_Code,Set_Name) VALUES (%s,%s)", (keys, sets[keys]["name"]))
+    # if key exists will replace it, otherwise will insert new one.
+    setsdb.execute("REPLACE INTO Sets (Set_Code,Set_Name) VALUES (%s,%s)", (keys, sets[keys]["name"]))
 
 
 conn.commit()
